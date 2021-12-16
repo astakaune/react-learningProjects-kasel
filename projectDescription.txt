@@ -1,0 +1,68 @@
+1 Paskaita. Martynas Kašelionis
+2021.11.16
+
+Užduotis: parašyti ciklą, kuris išspausdina duomenis pagal pateiktą duomenų struktūrą. Gautus duomenis reikia dinamiskai išvesti HTML <li> liste:
+
+
+1)	1.1.susikurti src/ data/ items.js =>
+	const items = [
+		{
+			id: "ID56789",
+			title: "Apple MacBook",
+			count: 456
+			},
+			{
+			id: "ID56789",
+			title: "Lenovo ThinkPad",
+			count: 56
+			},
+			{
+			id: "ID56789",
+			title: "DELL X",
+			count: 456
+			}
+			]
+			export default items;
+	1.2.src/app.js => import items from "./data/items";
+
+2) 2.1.src/consoleItems.js => 
+		const consoleItems = (data) => {
+			 parasyti cikla, kuris isves duomenis  tokia forma:
+			id: "ID56789",
+			title: "Lenovo ThinkPad",
+			count: 56
+			---------------
+			}
+		https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in	
+		sprendimas: const consoleItems = (data) => {
+			for (const item of items) {
+				for (const data in item) {
+					console.log(`${data}: ${item[data]}`);
+					//console.log(data, ':', item[data]); tas pats
+				}
+				console.log("-----------");
+			}
+		};
+			
+		export default consoleItems;
+		2.2.src/app.js => import consoleItems from "./consoleItems";
+
+	3) gautus duomenis reikia dinamiskai išvesti HTML <li> liste:
+	const consoleItems = (data) => {
+		const ulDOM = document.createElement("ul");
+		document.querySelector(".container").appendChild(ulDOM);
+		for (const item of data) {
+			for (const property in item) {
+				let liDOM = document.createElement("li");
+				liDOM.textContent = `Property: ${property}; -- Value: ${item[property]};`;
+				document.querySelector("ul").appendChild(liDOM);
+			}
+		}
+	};
+
+
+	
+	Klausimas:
+	kaip dome gauti items properties:values??
+	
+
